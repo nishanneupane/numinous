@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id       String @id @default(uuid())
+  userId   String
+  name     String
+  email    String
+  imageUrl String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TeacherProfile {
+  id             String   @id @default(uuid())
+  userId         String
+  title          String
+  price          Int?
+  publishedTitle String?  @db.Text
+  subTitle       String?  @db.Text
+  prompt         String?  @db.Text
+  body           String?  @db.Text
+  firstQuestion  String?  @db.Text
+  isPublished    Boolean?
+  isDraft        Boolean?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  pageViews      Int      @default(0)
+  earning        Int      @default(0)
+}
+
+model UserSubscription {
+  id                        String    @id @default(cuid())
+  userId                    String    @unique
+  stripeCustomerId          String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId      String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId             String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd    DateTime? @map(name: "stripe_current_period_end")
+}
