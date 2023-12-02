@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-function Navbar({ isPro }: { isPro: boolean }) {
+function Navbar({ isPro }: { isPro?: boolean }) {
     const proModal = useProModal()
     const router = useRouter()
 

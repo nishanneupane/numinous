@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const CompanionLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div>
-            <Navbar />
+            <Navbar/>
             <div className='max-w-6xl mx-auto mt-3'>
                 {children}
             </div>
