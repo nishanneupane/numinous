@@ -21,7 +21,7 @@ const CompanionPage = async () => {
         <div className='flex flex-col gap-1'>
             {
                 profiles.map((item) => (
-                    <ProfileItem item={item} user={user} />
+                    <ProfileItem item={item} user={user} key={item.title} />
                 ))
             }
 
