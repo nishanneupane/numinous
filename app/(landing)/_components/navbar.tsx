@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-function Navbar({ isPro }: { isPro?: boolean }) {
+function Navbar({ isPro }: { isPro: boolean }) {
     const proModal = useProModal()
     const router = useRouter()
 
@@ -34,19 +34,17 @@ function Navbar({ isPro }: { isPro?: boolean }) {
             <div className="font-semibold text-lg">
                 <div className="flex flex-row gap-x-4 items-center">
                     {
-                        !isPro ? (
-                            <Tooltip>
-                                <TooltipTrigger>
-                                    <Button variant="primary" onClick={proModal.onOpen} className="text-white">Upgrade </Button>
-                                </TooltipTrigger>
-                                <TooltipContent className="flex items-center justify-center flex-wrap max-w-20">
-                                    <p>Create your custom lead companions</p>
-                                </TooltipContent>
-                            </Tooltip>
-
-                        ) : (
-                            <Button variant="outline" onClick={() => router.push("/dashboard")}>Go to Dashboard </Button>
-                        )
+                        isPro && (<Button variant="outline" onClick={() => router.push("/dashboard")}>Go to Dashboard </Button>)
+                    }
+                    {
+                        !isPro && (<Tooltip>
+                            <TooltipTrigger>
+                                <Button variant="primary" onClick={proModal.onOpen} className="text-white">Upgrade </Button>
+                            </TooltipTrigger>
+                            <TooltipContent className="flex items-center justify-center flex-wrap max-w-20">
+                                <p>Create your custom lead companions</p>
+                            </TooltipContent>
+                        </Tooltip>)
                     }
                     <Link href="/companions">
                         <Button variant="outline">Try Companions</Button>

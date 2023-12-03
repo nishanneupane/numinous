@@ -27,8 +27,8 @@ const AddPageForm = () => {
         try {
             await axios.post("/api/teacher", values).then((res) => {
                 toast.success(`Lead Created`)
-                router.push(`/teacher/profile/${res.data.id}`)
                 form.reset()
+                router.push(`/teacher/profile/${res.data.id}`)
             })
         } catch (error) {
             toast.error("Error creating")

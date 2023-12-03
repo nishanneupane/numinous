@@ -2,6 +2,7 @@ import Navbar from '@/components/navbar'
 import { checkSubscription } from '@/lib/subscription'
 import { redirect } from 'next/navigation'
 import React from 'react'
+import Sidebar from './_components/sidebar'
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     const isPro = await checkSubscription()
@@ -11,8 +12,11 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
         <div className='flex flex-col'>
             <Navbar />
-            <main className='mt-[80px]'>
-                {children}
+            <main className='mt-[80px] flex'>
+                <Sidebar />
+                <div className='ml-[80px] w-full'>
+                    {children}
+                </div>
             </main>
         </div>
     )

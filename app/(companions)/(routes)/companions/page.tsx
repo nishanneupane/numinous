@@ -13,19 +13,22 @@ const CompanionPage = async () => {
             createdAt: "desc"
         }
     })
-    const user = await initialProfile();
-    if (!user) {
-        return redirectToSignIn()
-    }
     return (
-        <div className='flex flex-col gap-1'>
+        <>
             {
-                profiles.map((item) => (
-                    <ProfileItem item={item} user={user} key={item.title} />
-                ))
+                !profiles || profiles.length <= 0 && (
+                    <p className='text-xs items-center text-center text-muted-foreground'>No AI assistance profiles found</p>
+                )
             }
+            <div className='flex flex-col gap-1'>
+                {
+                    profiles.map((item) => (
+                        <ProfileItem item={item} key={item.title} />
+                    ))
+                }
 
-        </div>
+            </div>
+        </>
     )
 }
 

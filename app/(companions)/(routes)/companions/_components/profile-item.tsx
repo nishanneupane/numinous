@@ -6,9 +6,8 @@ import Link from 'next/link';
 
 interface ProfileItemProps {
     item: TeacherProfile;
-    user: Profile;
 }
-const ProfileItem = ({ item, user }: ProfileItemProps) => {
+const ProfileItem = ({ item }: ProfileItemProps) => {
     return (
         <div className='shadow-sm'>
             <Card>
@@ -26,7 +25,7 @@ const ProfileItem = ({ item, user }: ProfileItemProps) => {
                 </CardHeader>
                 <CardContent className='flex items-center justify-between '>
                     <CardDescription>{item.subTitle}</CardDescription>
-                    <p className='text-xs text-muted-foreground flex justify-end'>{user.name}</p>
+                    <p className='text-xs text-muted-foreground flex justify-end'>{item.createdBy}</p>
                 </CardContent>
             </Card>
         </div>

@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -17,13 +17,15 @@ model Profile {
   email    String
   imageUrl String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  teacherProfiles TeacherProfile[]
 }
 
 model TeacherProfile {
   id             String   @id @default(uuid())
   userId         String
+  profile        Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
   title          String
   price          Int?
   publishedTitle String?  @db.Text
@@ -32,18 +34,17 @@ model TeacherProfile {
   body           String?  @db.Text
   firstQuestion  String?  @db.Text
   isPublished    Boolean?
-  isDraft        Boolean?
+  createdBy       String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-  pageViews      Int      @default(0)
   earning        Int      @default(0)
 }
 
 model UserSubscription {
-  id                        String    @id @default(cuid())
-  userId                    String    @unique
-  stripeCustomerId          String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId      String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId             String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd    DateTime? @map(name: "stripe_current_period_end")
+  id                     String    @id @default(cuid())
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }

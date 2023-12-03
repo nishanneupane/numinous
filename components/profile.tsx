@@ -3,6 +3,7 @@ import { Profile, TeacherProfile } from '@prisma/client'
 import Image from 'next/image'
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ScrollArea } from './ui/scroll-area'
 
 const ProfileTeacher = ({user,teacher}:{user:any;teacher:TeacherProfile}) => {
     return (
@@ -34,8 +35,8 @@ const ProfileTeacher = ({user,teacher}:{user:any;teacher:TeacherProfile}) => {
 
                         <div className='mt-3'>
                             <h1 className='text-lg font-semibold text-muted-foreground'>Body</h1>
-                            <div className='mt-1 bg-slate-50 dark:bg-slate-800 border border-1 border-gray-200 shadow-md flex items-center justify-start text-start p-2'>
-                                <p className='text-start font-sans text-neutral-700 dark:text-neutral-200'>{teacher.body}</p>
+                            <div className='mt-1 bg-slate-50 dark:bg-slate-800 border border-1 border-gray-200 dark:border-gray-600 shadow-md flex items-center justify-start text-start p-2 rounded-md'>
+                                <ScrollArea className='text-start font-sans text-neutral-700 dark:text-neutral-200 h-[300px]'>{teacher.body}</ScrollArea>
                             </div>
                         </div>
                     </CardContent>

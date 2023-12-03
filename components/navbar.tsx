@@ -9,7 +9,7 @@ import { Plus } from 'lucide-react'
 
 const Navbar = ({ isSite }: { isSite?: boolean }) => {
     return (
-        <nav>
+        <nav className='z-50'>
             <div className='flex items-center justify-between px-2 fixed h-[70px] bg-secondary w-full'>
                 <div className='flex items-center justify-center gap-3' >
                     <Link href={"/"}>

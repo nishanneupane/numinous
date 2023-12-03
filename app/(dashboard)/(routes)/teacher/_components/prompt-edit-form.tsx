@@ -1,6 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Textarea } from '@/components/ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TeacherProfile } from '@prisma/client'
@@ -71,7 +72,7 @@ const PromptEditForm = ({ item }: PromptEditFormProps) => {
                     <div className='text-start w-full px-1'>
                         {
                             item.prompt ? (
-                                <p className='text-start text-sm'>{prompt}</p>
+                                <ScrollArea className='text-start text-sm  h-[200px]'>{prompt}</ScrollArea>
                             ) : (
                                 <span className='text-muted-foreground italic text-sm'>No Prompt</span>
                             )

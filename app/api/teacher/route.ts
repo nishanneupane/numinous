@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     if (!isPro) {
       return new NextResponse("Pro subscription required", { status: 403 });
     }
-    
+
     if (!title || !profile) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
@@ -23,6 +23,7 @@ export async function POST(req: Request) {
         title: title,
         userId: profile.id,
         isPublished: false,
+        createdBy: profile.name,
       },
     });
     return NextResponse.json(lead);
