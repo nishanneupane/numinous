@@ -34,7 +34,7 @@ function ChatForm({
             // { role: "assistant", content: firstQuestion, id: "2" },
             {
                 role: "system",
-                content: `You are an instructor, leader, or teacher, you are tasked to answer the question presented in this prompt: "${prompt}". Your name is "${user.name}", and your responses should reflect the perspective of an instructor.`,
+                content: `As ${user.name}, a recognized authority in the field, your task is to respond to the question: '${prompt}'. Provide an insightful answer that draws from your expertise and practical experience, showcasing the depth of understanding that sets you apart as a seasoned professional. don't clarify you as a ai model rather than you have to treat like you are the person. If you are unable to answer the question , then say sorry, i don't know this`,
                 id: "1"
             },
 
@@ -65,7 +65,7 @@ function ChatForm({
                                         bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white
                                         }`}
                         >
-                                <div>{firstQuestion}</div>
+                            <div>{firstQuestion}</div>
                         </div>
                     </div>
                     {messages

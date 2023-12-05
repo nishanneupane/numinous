@@ -12,12 +12,12 @@ const NavItem = ({ isPro }: { isPro: boolean }) => {
         <div className='py-3 w-full'>
             {
                 isPro ? (
-                    <Button variant="default" onClick={() => router.push("/teacher")} className="md:text-xl bg-gradient-to-r from-teal-500 to to-blue-500 w-full text-white p-2">
+                    <Button size={"lg"} variant="default" onClick={() => router.push("/teacher")} className="md:text-xl bg-gradient-to-r from-teal-500 to to-blue-500 w-full text-white p-2">
                         Create now
                         <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
                 ) : (
-                    <Button variant="default" onClick={proModal.onOpen} className="md:text-xl bg-gradient-to-r from-teal-500 to to-blue-500 w-full text-white p-2">
+                    <Button size={"lg"} variant="default" onClick={proModal.onOpen} className="md:text-xl bg-gradient-to-r from-teal-500 to to-blue-500 w-full text-white p-2">
                         Create now
                         <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
