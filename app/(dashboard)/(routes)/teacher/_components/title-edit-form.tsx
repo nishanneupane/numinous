@@ -38,6 +38,7 @@ const TitleEditForm = ({ item }: TitleEditFormProps) => {
             await axios.patch(`/api/teacher/${item.id}`, values).then((res) => {
                 toast.success(`Profile ${res.data.title} created`)
                 setIsEditing(false)
+                setTitle(title)
                 form.reset()
                 router.refresh()
             })
