@@ -2,7 +2,6 @@ import ProfileTeacher from '@/components/profile'
 import { db } from '@/lib/db';
 import React from 'react'
 import ChatForm from './_components/chat-form';
-import { redirect } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 
@@ -21,16 +20,14 @@ const CompanionIdPage = async ({ params }: { params: { companionId: string } }) 
             id:companion.userId
         }
     });
-    if (!user) {
-        return redirect("/");
-    }
+    
     return (
         <div className='flex items-center justify-between px-3 w-full'>
             <div className='w-full'>
                 <ProfileTeacher user={user} teacher={companion} />
             </div>
             <div className='w-full px-2'>
-                <ChatForm firstQuestion={companion.firstQuestion} prompt={companion.prompt} user={user} />
+                <ChatForm firstQuestion={companion.firstQuestion} prompt={companion.prompt} user={user!} />
             </div>
 
             <div className="fixed top-0 right-2 text-xs">

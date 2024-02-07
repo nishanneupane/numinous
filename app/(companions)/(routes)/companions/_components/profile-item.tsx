@@ -4,10 +4,15 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-interface ProfileItemProps {
-    item: TeacherProfile;
+type Props = {
+    item: {
+        id: string;
+        title: string;
+        subTitle: string | null;
+        createdBy: string;
+    }
 }
-const ProfileItem = ({ item }: ProfileItemProps) => {
+const ProfileItem = ({ item }: Props) => {
     return (
         <div className='shadow-sm'>
             <Card>

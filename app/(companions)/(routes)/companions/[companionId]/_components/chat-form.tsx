@@ -92,12 +92,11 @@ function ChatForm({
             </div>
 
             <form onSubmit={handleSubmit} className="my-4 flex">
-                <textarea
+                <input
                     value={input}
                     onChange={handleInputChange}
                     className="flex-grow rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 px-3 py-2 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
                     placeholder="Type your message"
-                    rows={1}
                     style={{ resize: "none" }} // disable manual resize
                 />
                 <button
