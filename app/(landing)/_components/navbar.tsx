@@ -1,7 +1,7 @@
 "use client"
+import Hint from "@/components/hint";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { SignInButton, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
@@ -37,14 +37,11 @@ function Navbar({ isPro }: { isPro: boolean }) {
                         isPro && (<Button variant="outline" onClick={() => router.push("/dashboard")}>Go to Dashboard </Button>)
                     }
                     {
-                        !isPro && (<Tooltip>
-                            <TooltipTrigger>
+                        !isPro && (
+                            <Hint label="Create your custom lead companions">
                                 <Button variant="primary" onClick={proModal.onOpen} className="text-white">Upgrade </Button>
-                            </TooltipTrigger>
-                            <TooltipContent className="flex items-center justify-center flex-wrap max-w-20">
-                                <p>Create your custom lead companions</p>
-                            </TooltipContent>
-                        </Tooltip>)
+                            </Hint>
+                        )
                     }
                     <Link href="/companions">
                         <Button variant="outline">Try Companions</Button>

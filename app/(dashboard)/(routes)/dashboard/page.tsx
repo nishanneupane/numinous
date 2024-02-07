@@ -5,15 +5,15 @@ import { initialProfile } from '@/lib/initialProfile'
 import { db } from '@/lib/db'
 import { redirectToSignIn } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import { checkSubscription } from '@/lib/subscription'
 import { redirect } from 'next/navigation'
+import Hint from '@/components/hint'
 
 const DashboardPage = async () => {
     const isPro = await checkSubscription();
-    if(!isPro){
+    if (!isPro) {
         return redirect("/")
     }
     const profile = await initialProfile();
@@ -32,18 +32,13 @@ const DashboardPage = async () => {
         <div className="container mx-auto py-10">
             <div className='flex items-center justify-end py-1'>
                 <div className="block md:hidden">
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <Button>
-                                <Link href={"/teacher"}>
-                                    <Plus className='h-4 w-4' />
-                                </Link>
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            Add New Profile
-                        </TooltipContent>
-                    </Tooltip>
+                    <Hint label='Add New Profile'>
+                        <Button>
+                            <Link href={"/teacher"}>
+                                <Plus className='h-4 w-4' />
+                            </Link>
+                        </Button>
+                    </Hint>
                 </div>
                 <Button>
                     <Link href={"/teacher"}>

@@ -3,7 +3,7 @@ import { LucideIcon } from 'lucide-react'
 import React from 'react'
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from '@/lib/utils';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import Hint from '@/components/hint';
 
 interface SidebarItemProps {
     icon: LucideIcon;
@@ -29,14 +29,10 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
             )}
         >
             <div className="flex items-center gap-x-2 py-4 w-full">
-                <Tooltip>
-                    <TooltipTrigger>
-                        <Icon size={22} className={cn("text-slate-500 w-full", isActive && "text-sky-700 dark:text-slate-700 ")} />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        {label}
-                    </TooltipContent>
-                </Tooltip>
+                <Hint label={label}>
+                    <Icon size={22} className={cn("text-slate-500 w-full", isActive && "text-sky-700 dark:text-slate-700 ")} />
+                </Hint>
+
             </div>
             <div className={cn("ml-auto opacity-0 border-2 border-sky-700 h-full transition-all", isActive && "opacity-100")} />
         </button>
