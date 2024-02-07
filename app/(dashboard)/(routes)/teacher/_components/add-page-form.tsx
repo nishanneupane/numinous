@@ -53,7 +53,7 @@ const AddPageForm = () => {
                                     Drop here your sweet lead task here
                                 </FormDescription>
 
-                                <Button className='w-full'>
+                                <Button className='w-full' disabled={form.formState.isSubmitting || form.formState.isLoading}>
                                     Create
                                 </Button>
                                 <FormMessage />
