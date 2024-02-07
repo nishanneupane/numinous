@@ -9,7 +9,9 @@ import { Profile } from "@prisma/client";
 interface ChatFormProps {
     firstQuestion: string;
     prompt: string;
-    user: Profile;
+    user: {
+        name: string;
+    }
 }
 
 function ChatForm({

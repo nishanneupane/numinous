@@ -5,7 +5,15 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScrollArea } from './ui/scroll-area'
 
-const ProfileTeacher = ({user,teacher}:{user:any;teacher:TeacherProfile}) => {
+type Props = {
+    user: {
+        name: string;
+        email: string;
+        imageUrl: string;
+    },
+    teacher: TeacherProfile
+}
+const ProfileTeacher = ({ user, teacher }: Props) => {
     return (
         <div className='w-full space-y-2 mt-3'>
             <div className='flex items-center justify-around gap-2 bg-gray-200 dark:bg-slate-700 rounded-md shadow-md p-2'>
