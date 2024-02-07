@@ -6,12 +6,13 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 function Navbar({ isPro }: { isPro: boolean }) {
     const proModal = useProModal()
     const router = useRouter()
+    const pathname = usePathname()
 
     return (
         <nav className="flex w-screen items-center justify-between p-6 ">
@@ -45,9 +46,13 @@ function Navbar({ isPro }: { isPro: boolean }) {
                         )
                     }
 
-                    <Link href="/companions">
-                        <Button variant="outline">Try Companions</Button>
-                    </Link>
+                    {
+                        !pathname.includes("/companions") ? (
+                            <Link href="/companions">
+                                <Button variant="outline">Try Companions</Button>
+                            </Link>
+                        ) : null
+                    }
                     <SignedOut>
                         <SignInButton
                             mode="modal"

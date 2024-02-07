@@ -29,7 +29,7 @@ const leaderRoutes = [
 
 const Sidebar = () => {
     return (
-        <div className='w-[80px] mt-[-10px] h-screen bg-slate-800 fixed z-10'>
+        <div className='w-[80px] mt-[-10px] h-full bg-slate-800 fixed z-10'>
             <div className='h-full border-r flex flex-col overflow-y-auto shadow-sm bg-white dark:bg-neutral-900'>
                 <div className="flex flex-col w-full">
 

@@ -37,6 +37,7 @@ const PromptEditForm = ({ item }: PromptEditFormProps) => {
         try {
             await axios.patch(`/api/teacher/${item.id}`, values).then((res) => {
                 toast.success(`Profile ${res.data.title} created`)
+                setPrompt(res.data.prompt)
                 setIsEditing(false)
                 form.reset()
                 router.refresh()
