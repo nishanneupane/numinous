@@ -11,7 +11,7 @@ async function LandingLayout({
 }) {
   const isPro=await checkSubscription();
   return (
-    <section className="flex min-h-screen flex-col overflow-x-clip">
+    <section className="flex h-full flex-col overflow-x-clip">
       <Navbar isPro={isPro} />
 
       <div className="flex-grow">{children}</div>

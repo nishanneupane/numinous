@@ -3,7 +3,7 @@ import Hint from "@/components/hint";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useProModal } from "@/hooks/use-pro-modal";
-import { SignInButton, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,27 +27,33 @@ function Navbar({ isPro }: { isPro: boolean }) {
                         alt='Logo'
                         className='object-contain'
                     />
-                    <UserButton afterSignOutUrl="/" />
+                    <SignedIn>
+                        <UserButton afterSignOutUrl="/" />
+                    </SignedIn>
                     <ModeToggle />
                 </Link>
             </div>
             <div className="font-semibold text-lg">
                 <div className="flex flex-row gap-x-4 items-center">
                     {
-                        isPro && (<Button variant="outline" onClick={() => router.push("/dashboard")}>Go to Dashboard </Button>)
-                    }
-                    {
-                        !isPro && (
+                        isPro ? (
+                            <Button variant="outline" onClick={() => router.push("/dashboard")}>Go to Dashboard </Button>
+                        ) : (
                             <Hint label="Create your custom lead companions">
                                 <Button variant="primary" onClick={proModal.onOpen} className="text-white">Upgrade </Button>
                             </Hint>
                         )
                     }
+
                     <Link href="/companions">
                         <Button variant="outline">Try Companions</Button>
                     </Link>
                     <SignedOut>
-                        <SignInButton />
+                        <SignInButton
+                            mode="modal"
+                            afterSignInUrl="/"
+                            afterSignUpUrl="/"
+                        />
                     </SignedOut>
 
                 </div>
