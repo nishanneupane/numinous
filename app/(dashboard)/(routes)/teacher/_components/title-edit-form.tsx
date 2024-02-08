@@ -39,7 +39,6 @@ const TitleEditForm = ({ item }: TitleEditFormProps) => {
                 toast.success(`Profile ${res.data.title} created`)
                 setIsEditing(false)
                 setTitle(res.data.title)
-                form.reset()
                 router.refresh()
             })
 
