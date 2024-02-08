@@ -7,6 +7,8 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ProModal } from '@/components/pro-modal'
 import { CrispProvider } from '@/components/crisp-provider'
+import { Suspense } from 'react'
+import { Loader2 } from 'lucide-react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,8 +23,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <Suspense fallback={<Loader2 className='h-5 w-5 animate-spin' />}>
       <ClerkProvider>
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
           <body className={inter.className}>
             <CrispProvider />
             <Toaster />
@@ -39,5 +42,6 @@ export default function RootLayout({
           </body>
         </html>
       </ClerkProvider>
+    </Suspense>
   )
 }
