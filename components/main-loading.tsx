@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Loading = () => {
+const MainLoading = () => {
   return (
     <div className='w-ful h-full flex flex-col justify-center items-center'>
         <Image
@@ -15,4 +15,4 @@ const Loading = () => {
   )
 }
 
-export default Loading
+export default MainLoading
