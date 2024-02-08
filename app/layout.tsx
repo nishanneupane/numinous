@@ -7,8 +7,6 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ProModal } from '@/components/pro-modal'
 import { CrispProvider } from '@/components/crisp-provider'
-import { Suspense } from 'react'
-import Loading from './loading'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <Suspense fallback={<Loading />}>
       <ClerkProvider>
         <html lang="en">
           <body className={inter.className}>
@@ -42,6 +39,5 @@ export default function RootLayout({
           </body>
         </html>
       </ClerkProvider>
-    </Suspense>
   )
 }
