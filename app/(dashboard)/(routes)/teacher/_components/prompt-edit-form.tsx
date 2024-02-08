@@ -36,7 +36,7 @@ const PromptEditForm = ({ item }: PromptEditFormProps) => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.patch(`/api/teacher/${item.id}`, values).then((res) => {
-                toast.success(`Profile ${res.data.title} created`)
+                toast.success(`Profile ${res.data.title} updated`)
                 setPrompt(res.data.prompt)
                 setIsEditing(false)
                 form.reset()

@@ -59,9 +59,9 @@ const AddPageForm = () => {
                                 <Button className='w-full' disabled={form.formState.isSubmitting || form.formState.isLoading}>
                                     {
                                         (isLoading || isSubmitting) ? (
-                                            <Loader2 className='h-4 w-4 text-primary' />
+                                            <Loader2 className='h-4 w-4 text-secondary animate-spin' />
                                         ) : (
-                                            <p className='text-primary'>Create</p>
+                                            <p className='text-secondary'>Create</p>
                                         )
                                     }
 

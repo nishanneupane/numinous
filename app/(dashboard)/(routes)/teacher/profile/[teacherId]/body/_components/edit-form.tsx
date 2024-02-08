@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Profile, TeacherProfile } from '@prisma/client'
 import axios from 'axios'
+import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -58,6 +59,13 @@ const EditForm = ({ teacher, user }: { teacher: TeacherProfile; user: Profile })
     }
     const onLoading = form.formState.isSubmitting
     const onValid = form.formState.isValid
+    const isSubmitting = form.formState.isSubmitting
+
+    const handleCancel = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        form.reset()
+    }
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className='space-y-2'>
@@ -115,12 +123,18 @@ const EditForm = ({ teacher, user }: { teacher: TeacherProfile; user: Profile })
                                         <Button
                                             type='button'
                                             variant={"ghost"}
-                                            onClick={() => form.reset()}
+                                            onClick={handleCancel}
                                         >
                                             Cancel
                                         </Button>
                                         <Button disabled={onLoading || !onValid} type='submit'>
-                                            Save
+                                            {
+                                                (onLoading || isSubmitting) ? (
+                                                    <Loader2 className='h-4 w-4 text-secondary animate-spin' />
+                                                ) : (
+                                                    <p className='text-secondary'>Save</p>
+                                                )
+                                            }
                                         </Button>
                                     </div>
                                 </form>
@@ -131,7 +145,7 @@ const EditForm = ({ teacher, user }: { teacher: TeacherProfile; user: Profile })
             </div>
 
 
-            <ProfileTeacher user={user} teacher={teacher}/>
+            <ProfileTeacher user={user} teacher={teacher} />
         </div>
     )
 }
