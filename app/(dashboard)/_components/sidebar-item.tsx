@@ -29,7 +29,7 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
             )}
         >
             <div className="flex items-center gap-x-2 py-4 w-full">
-                <Hint label={label}>
+                <Hint label={label} side={"right"}>
                     <Icon size={22} className={cn("text-slate-500 w-full", isActive && "text-sky-700 dark:text-slate-700 ")} />
                 </Hint>
 

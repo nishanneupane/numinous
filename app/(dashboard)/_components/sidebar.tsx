@@ -1,5 +1,5 @@
 "use client"
-import {  AtomIcon, LayoutDashboard, Plus, Settings, User2 } from 'lucide-react';
+import { AtomIcon, LayoutDashboard, Plus, Settings, Users2Icon } from 'lucide-react';
 import React from 'react'
 import SidebarItem from './sidebar-item';
 
@@ -13,6 +13,11 @@ const leaderRoutes = [
         icon: Plus,
         label: "Create",
         href: "/teacher",
+    },
+    {
+        icon: Users2Icon,
+        label: "Discord",
+        href: "/discord",
     },
     {
         icon: AtomIcon,
