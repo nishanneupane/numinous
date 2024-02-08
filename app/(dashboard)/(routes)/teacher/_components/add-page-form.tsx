@@ -61,7 +61,7 @@ const AddPageForm = () => {
                                         (isLoading || isSubmitting) ? (
                                             <Loader2 className='h-4 w-4 text-primary' />
                                         ) : (
-                                            <p>Create</p>
+                                            <p className='text-primary'>Create</p>
                                         )
                                     }
 
