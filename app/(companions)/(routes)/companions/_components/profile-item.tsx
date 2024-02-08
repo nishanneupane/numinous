@@ -22,11 +22,9 @@ const ProfileItem = ({ item }: Props) => {
                         <div className='flex items-center justify-between px-3'>
                             <p>{item.title}</p>
                             <Button variant={"primary"} size={"sm"} className='text-white'>
-                                <Suspense fallback={<Loader2 className='h-4 w-4 animate-spin' />}>
-                                    <Link href={`/companions/${item.id}`} >
-                                        Try Now
-                                    </Link>
-                                </Suspense>
+                                <Link href={`/companions/${item.id}`} >
+                                    Try Now
+                                </Link>
                             </Button>
                         </div>
                     </CardTitle>
