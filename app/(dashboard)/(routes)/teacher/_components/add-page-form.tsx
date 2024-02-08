@@ -4,6 +4,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
+import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -34,6 +35,8 @@ const AddPageForm = () => {
             toast.error("Error creating")
         }
     }
+    const isLoading = form.formState.isLoading
+    const isSubmitting = form.formState.isSubmitting
     return (
         <div className='max-w-3xl mx-auto border border-gray-100 dark:border-slate-700 rounded-md shadow-sm p-2'>
             <Form {...form}>
@@ -54,7 +57,14 @@ const AddPageForm = () => {
                                 </FormDescription>
 
                                 <Button className='w-full' disabled={form.formState.isSubmitting || form.formState.isLoading}>
-                                    Create
+                                    {
+                                        (isLoading || isSubmitting) ? (
+                                            <Loader2 className='h-4 w-4 text-primary' />
+                                        ) : (
+                                            <p>Create</p>
+                                        )
+                                    }
+
                                 </Button>
                                 <FormMessage />
                             </FormItem>
