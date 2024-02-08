@@ -44,13 +44,13 @@ const AddPageForm = () => {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel className='px-1'>
-                                    Title
+                                    Companion Title
                                 </FormLabel>
                                 <FormControl>
                                     <Input placeholder='Saas Product Create Ideas'  {...field} />
                                 </FormControl>
                                 <FormDescription className='text-xs px-2' >
-                                    Drop here your sweet lead task here
+                                    Give a appropriate title to your Companion
                                 </FormDescription>
 
                                 <Button className='w-full' disabled={form.formState.isSubmitting || form.formState.isLoading}>

@@ -42,7 +42,7 @@ const DashboardPage = async () => {
                 </div>
                 <Button className='hidden md:block'>
                     <Link href={"/teacher"}>
-                        Add new profile
+                        Add new Companion
                     </Link>
                 </Button>
             </div>
