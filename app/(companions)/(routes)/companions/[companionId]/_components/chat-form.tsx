@@ -36,7 +36,7 @@ function ChatForm({
             // { role: "assistant", content: firstQuestion, id: "2" },
             {
                 role: "system",
-                content: `You are ${user.name} and you are provided this prompt: ${prompt}. Now chat with users as explained in the prompt . Try to give short and sweet answers. I you are unable to answer, then directly say Sorry,I don't know.`,
+                content: `answer in nepali . You are ${user.name} and you are provided this prompt: ${prompt}. Now chat with users as explained in the prompt . Try to give short and sweet answers. I you are unable to answer, then directly say Sorry,I don't know.`,
                 id: "1"
             },
 

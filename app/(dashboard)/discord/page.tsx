@@ -5,7 +5,7 @@ import Link from 'next/link'
 const DiscordPage = () => {
     return (
         <div
-            className='w-full md:w-[80%] h-screen flex items-center justify-center flex-col space-y-3 m-auto px-3 md:px-0'
+            className='w-full h-screen flex items-center justify-center flex-col space-y-3 px-3 md:px-0 py-2 bg-slate-200 dark:bg-transparent'
         >
             <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-t from-teal-400 to-blue-600 bg-clip-text text-transparent'>Discord community</h1>
             <p className='text-muted-foreground md:text-base text-sm'>Join Discord if you face any queries . Our team is here to help you.</p>
