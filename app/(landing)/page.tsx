@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { checkSubscription } from "@/lib/subscription";
 import NavItem from "./_components/nav-item";
-import MobileNav from "./_components/mobile-nav";
 
 function LandingPage() {
   return (
@@ -31,7 +30,7 @@ const Hero = async () => {
 
         <p className="sm:text-md mt-5 max-w-2xl text-sm text-gray-500  md:text-base">
           Numinous is cutting-edge software that crafts personalized AI companions. These companions mimic human interaction, offering a
-          conversational experience akin to chatting with the world's most popular and affluent individuals.
+          conversational experience akin to chatting with the world&apos;s most popular and affluent individuals.
         </p>
         <NavItem isPro={isPro} />
 
