@@ -22,18 +22,19 @@ const Hero = async () => {
     <div className="flex flex-col md:flex-row items-center justify-center gap-3 px-5 ">
       <div className="mx-4 mb-14 mt-6 flex flex-1 flex-col items-center text-start sm:mb-12 md:mb-32 md:mt-20">
         <h1 className="max-w-5xl text-2xl font-bold sm:text-4xl md:text-6xl">
-          Create your personal {" "}
+          Create your personalized {" "}
           <span className="bg-gradient-to-t from-teal-400 to-blue-600 bg-clip-text text-transparent">
             {" "}
             AI Assistance{" "}
           </span>
         </h1>
 
-        <p className="sm:text-md mt-5 max-w-2xl text-sm text-gray-600  md:text-xl">
-          Numinous is a software of companions which can interact as per your prompt and makes vibes like you are conversating.
+        <p className="sm:text-md mt-5 max-w-2xl text-sm text-gray-500  md:text-base">
+          Numinous is cutting-edge software that crafts personalized AI companions. These companions mimic human interaction, offering a
+          conversational experience akin to chatting with the world's most popular and affluent individuals.
         </p>
         <NavItem isPro={isPro} />
-        
+
       </div>
 
       <div className="flex items-center justify-center -mt-10 md:-mt-20">
