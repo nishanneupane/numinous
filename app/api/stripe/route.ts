@@ -44,9 +44,9 @@ export async function GET() {
             currency: "USD",
             product_data: {
               name: "Luminous Pro",
-              description: "Create Leaders like real and chat."
+              description: "Create Premium Leaders."
             },
-            unit_amount: 299,
+            unit_amount: 2499,
             recurring: {
               interval: "month"
             }
