@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import MobileNav from "./mobile-nav";
 
 function Navbar({ isPro }: { isPro: boolean }) {
     const proModal = useProModal()
@@ -15,11 +16,11 @@ function Navbar({ isPro }: { isPro: boolean }) {
     const pathname = usePathname()
 
     return (
-        <nav className="flex w-screen items-center justify-between p-6 ">
-            <div>
+        <nav className="w-full flex items-center justify-between p-6">
+            <div className="flex items-center justify-between w-full">
                 <Link
-                    className="flex items-center justify-center gap-2"
                     href="/"
+                    className="flex items-center justify-center"
                 >
                     <Image
                         src={"/logorm.png"}
@@ -31,10 +32,12 @@ function Navbar({ isPro }: { isPro: boolean }) {
                     <SignedIn>
                         <UserButton afterSignOutUrl="/" />
                     </SignedIn>
-                    <ModeToggle />
                 </Link>
+                <div>
+                    <MobileNav isPro={isPro} />
+                </div>
             </div>
-            <div className="font-semibold text-lg">
+            <div className="font-semibold text-lg hidden md:block">
                 <div className="flex flex-row gap-x-4 items-center">
                     {
                         isPro ? (

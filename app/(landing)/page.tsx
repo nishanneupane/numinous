@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { checkSubscription } from "@/lib/subscription";
 import NavItem from "./_components/nav-item";
+import MobileNav from "./_components/mobile-nav";
 
 function LandingPage() {
   return (
@@ -18,7 +19,7 @@ export default LandingPage;
 const Hero = async () => {
   const isPro = await checkSubscription()
   return (
-    <div className="flex items-center justify-center gap-2 px-5">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-3 px-5 ">
       <div className="mx-4 mb-14 mt-6 flex flex-1 flex-col items-center text-start sm:mb-12 md:mb-32 md:mt-20">
         <h1 className="max-w-5xl text-2xl font-bold sm:text-4xl md:text-6xl">
           Create your personal {" "}
@@ -32,9 +33,10 @@ const Hero = async () => {
           Numinous is a software of companions which can interact as per your prompt and makes vibes like you are conversating.
         </p>
         <NavItem isPro={isPro} />
+        
       </div>
 
-      <div className="flex items-center justify-center -mt-20">
+      <div className="flex items-center justify-center -mt-10 md:-mt-20">
         <Image
           src={"/demo.png"}
           width={600}

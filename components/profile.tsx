@@ -16,15 +16,15 @@ type Props = {
 const ProfileTeacher = ({ user, teacher }: Props) => {
     return (
         <div className='w-full space-y-2 mt-3'>
-            <div className='flex items-center justify-around gap-2 bg-gray-200 dark:bg-slate-700 rounded-md shadow-md p-2'>
+            <div className='flex items-center justify-center md:justify-around md:gap-2 bg-gray-200 dark:bg-slate-700 rounded-md shadow-md p-2'>
                 <Image
                     src={user.imageUrl}
                     width={200}
                     height={200}
                     alt={user.name}
-                    className='rounded-full object-contain border p-1'
+                    className='rounded-full object-contain border p-1 scale-75 md:scale-100'
                 />
-                <div className="flex items-center justify-center flex-col gap-2">
+                <div className="flex items-center justify-center flex-col gap-2 scale-75 md:scale-100">
                     <h1 className='text-2xl font-bold text-center truncate bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent'>{user.name}</h1>
                     <span className='text-muted-foreground text-xs'>{user.email}</span>
                 </div>
@@ -39,7 +39,7 @@ const ProfileTeacher = ({ user, teacher }: Props) => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <h1 className='font-normal text-sm text-cyan-500'>First Question :- <span className='text-primary font-semibold text-md'> {teacher.firstQuestion}</span></h1>
+                        {/* <h1 className='font-normal text-sm text-cyan-500'>First Question :- <span className='text-primary font-semibold text-md'> {teacher.firstQuestion}</span></h1> */}
 
                         <div className='mt-3'>
                             <h1 className='text-lg font-semibold text-muted-foreground'>Body</h1>
