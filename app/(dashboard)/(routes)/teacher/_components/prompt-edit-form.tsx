@@ -85,14 +85,14 @@ const PromptEditForm = ({ item }: PromptEditFormProps) => {
             {
                 isEditing && (
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
                             <FormField
                                 control={form.control}
                                 name='prompt'
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Textarea placeholder='Enter your prompt here' {...field} className='rounded-md w-full' />
+                                            <Textarea placeholder='Enter your prompt here' {...field} className='rounded-md w-full min-h-[200px]' />
                                         </FormControl>
                                         <FormDescription className='text-xs text-muted-foreground'>Give the prompt so that the logic of conversation can be decided.</FormDescription>
                                         <FormMessage />
