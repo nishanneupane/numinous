@@ -33,7 +33,8 @@ function Navbar({ isPro }: { isPro: boolean }) {
                         <UserButton afterSignOutUrl="/" />
                     </SignedIn>
                 </Link>
-                <div>
+                <div className="space-x-3">
+                    <ModeToggle/>
                     <MobileNav isPro={isPro} />
                 </div>
             </div>
