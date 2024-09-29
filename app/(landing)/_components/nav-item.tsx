@@ -16,9 +16,9 @@ const NavItem = ({ isPro }: { isPro: boolean }) => {
                         size="sm"
                         variant="outline"
                         onClick={() => router.push("/teacher")}
-                        className="w-full text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50 border border-indigo-200 rounded-full transition-all duration-300 ease-in-out shadow-sm"
+                        className="w-full text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 hover:bg-indigo-50 dark:hover:bg-gray-700 border border-indigo-200 dark:border-indigo-700 rounded-full transition-all duration-300 ease-in-out shadow-sm"
                     >
-                        <Sparkles className='h-4 w-4 mr-2 text-indigo-500' />
+                        <Sparkles className='h-4 w-4 mr-2 text-indigo-500 dark:text-indigo-400' />
                         Create AI Companion
                     </Button>
                 ) : (
@@ -26,9 +26,9 @@ const NavItem = ({ isPro }: { isPro: boolean }) => {
                         size="sm"
                         variant="outline"
                         onClick={proModal.onOpen}
-                        className="w-full text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50 border border-indigo-200 rounded-full transition-all duration-300 ease-in-out shadow-sm"
+                        className="w-full text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 hover:bg-indigo-50 dark:hover:bg-gray-700 border border-indigo-200 dark:border-indigo-700 rounded-full transition-all duration-300 ease-in-out shadow-sm"
                     >
-                        <Sparkles className='h-4 w-4 mr-2 text-indigo-500' />
+                        <Sparkles className='h-4 w-4 mr-2 text-indigo-500 dark:text-indigo-400' />
                         Upgrade to Create
                     </Button>
                 )

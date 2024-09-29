@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Check, Zap } from "lucide-react";
 
 import {
     Dialog,
@@ -13,8 +14,9 @@ import {
 } from "@/components/ui/dialog"
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
+import { Badge } from "./ui/badge";
 
 export const ProModal = () => {
     const proModal = useProModal();
@@ -25,17 +27,13 @@ export const ProModal = () => {
         setIsMounted(true);
     }, []);
 
-
     const onSubscribe = async () => {
         try {
             setLoading(true);
             const response = await axios.get("/api/stripe");
-
             window.location.href = response.data.url;
         } catch (error) {
-            toast.error(
-                "Something went wrong"
-            );
+            toast.error("Something went wrong");
         } finally {
             setLoading(false);
         }
@@ -47,27 +45,45 @@ export const ProModal = () => {
 
     return (
         <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
-            <DialogContent>
-                <DialogHeader className="space-y-4">
-                    <DialogTitle className="text-center">
-                        Buy and Create your own AI
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
+                        <div className="flex items-center gap-x-2 font-bold py-1">
+                            Upgrade to Numinous
+                            <Badge variant={"default"} className="uppercase text-sm py-1">
+                                pro
+                            </Badge>
+                        </div>
                     </DialogTitle>
-                    <DialogDescription className="text-center space-y-2">
-                        Create
-                        <span className="text-sky-500 mx-1 font-medium">Custom AI</span>
-                        LeaderShip!
+                    <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
+                        {proFeatures.map((feature) => (
+                            <Card key={feature} className="p-3 border-black/5 flex items-center justify-start">
+                                <Check className="text-primary w-5 h-5 mr-4" />
+                                {feature}
+                            </Card>
+                        ))}
                     </DialogDescription>
                 </DialogHeader>
-                <Separator />
-                <div className="flex justify-between">
-                    <p className="text-2xl font-medium">
-                        $24<span className="text-sm font-normal">.99 / mo</span>
-                    </p>
-                    <Button onClick={onSubscribe} disabled={loading} variant="premium">
-                        Subscribe
+                <DialogFooter>
+                    <Button
+                        onClick={onSubscribe}
+                        size="lg"
+                        variant="premium"
+                        className="w-full"
+                        disabled={loading}
+                    >
+                        Upgrade
+                        <Zap className="w-4 h-4 ml-2 fill-white" />
                     </Button>
-                </div>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
     );
 };
+
+const proFeatures = [
+    "Create Custom AI Leaders",
+    "Unlimited AI Interactions",
+    "Priority Support",
+    "Early Access to New Features"
+];

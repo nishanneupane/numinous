@@ -43,7 +43,7 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "Luminous Pro",
+              name: "Numinous Pro",
               description: "Create Premium Leaders."
             },
             unit_amount: 2499,
