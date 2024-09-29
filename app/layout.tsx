@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Numinous',
-  description: 'This app helps to chat with leaders who have more knowledge than you or you can be the leader here in many fields.',
+  description: 'Experience the future of conversation with Numinous AI. Dive into a world where AI companions bring your ideas to life.',
 }
 
 export default function RootLayout({

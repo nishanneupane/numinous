@@ -1,16 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { Send, Loader2 } from "lucide-react";
 import { useChat } from "ai/react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Profile } from "@prisma/client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ChatFormProps {
     firstQuestion: string;
     prompt: string;
     user: {
         name: string;
+        imageUrl?: string;
     }
 }
 
@@ -19,6 +23,7 @@ function ChatForm({
     firstQuestion,
     user,
 }: ChatFormProps) {
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const {
         messages,
@@ -29,91 +34,88 @@ function ChatForm({
         setMessages,
     } = useChat({
         api: "/api/openai",
+        body: { prompt, user },
     });
 
     useEffect(() => {
         setMessages([
-            // { role: "assistant", content: firstQuestion, id: "2" },
             {
-                role: "system",
-                content: `You are ${user.name} and you are provided this prompt: ${prompt}. Now chat with users as explained in the prompt . Try to give short and sweet answers. I you are unable to answer, then directly say Sorry,I don't know.`,
+                role: "assistant",
+                content: firstQuestion,
                 id: "1"
             },
-
         ]);
-    }, [prompt, firstQuestion, user.name, setMessages]);
+    }, [firstQuestion, setMessages]);
 
-
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [messages]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         handleOpenAIChatSubmit(e);
     };
 
     return (
-        <div className="flex h-full max-w-3xl flex-col">
-            <div className="flex-grow space-y-4 overflow-y-auto rounded-md border-2 border-solid p-4">
-                <ScrollArea className="h-[500px] rounded-md border p-4">
-                    {messages.length === 0 && (
-                        <div>No messages yet. Start chatting below!</div>
-                    )}
-                    <div
-                        className={`flex items-end gap-2 mb-2 
-                                    }`}
-                    >
-                        <div
-                            className={`rounded-lg px-4 py-2
-                                        bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white
-                                        }`}
-                        >
-                            <div>{firstQuestion}</div>
+        <Card className="flex h-[80vh] flex-col overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
+            <CardContent className="flex-grow p-0">
+                <ScrollArea className="h-full p-4" ref={scrollRef}>
+                    {messages.length === 0 ? (
+                        <div className="text-center text-gray-500 dark:text-gray-400 py-8 animate-fade-in">
+                            Start your conversation with {user.name}
                         </div>
-                    </div>
-                    {messages
-                        .filter((message) => message.role !== "system")
-                        .map((message, idx) => (
-                            <div
-                                key={idx}
-                                className={`flex items-end gap-2 mb-2 ${message.role === "user" ? "justify-end" : ""
-                                    }`}
-                            >
-                                <div
-                                    className={`rounded-lg px-4 py-2 ${message.role === "user"
-                                        ? "bg-sky-500 dark:bg-sky-700 text-white"
-                                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
-                                        }`}
-                                >
-                                    {message.content.split("\n").map((line, i) => (
-                                        <div key={i}>{line}</div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                </ScrollArea>
-            </div>
-
-            <form onSubmit={handleSubmit} className="my-4 flex">
-                <input
-                    value={input}
-                    onChange={handleInputChange}
-                    className="flex-grow rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 px-3 py-2 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    placeholder="Type your message"
-                    style={{ resize: "none" }} // disable manual resize
-                />
-                <button
-                    type="submit"
-                    className="ml-4 mt-auto h-10 flex-shrink-0 rounded-md bg-sky-500 dark:bg-sky-700 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50"
-                    disabled={isLoading}
-                >
-                    {isLoading ? (
-                        <Loader2 className="h-4 w-4" />
                     ) : (
-                        <span>Send</span>
+                        <>
+                            {messages.map((message, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`flex items-start gap-3 mb-4 ${message.role === "user" ? "justify-end" : ""} animate-slide-in-bottom`}
+                                >
+                                    {message.role !== "user" && (
+                                        <Avatar>
+                                            <AvatarImage src={user.imageUrl || "/demo.png"} alt={user.name} />
+                                            <AvatarFallback>{user.name[0]}</AvatarFallback>
+                                        </Avatar>
+                                    )}
+                                    <div className={`rounded-lg px-4 py-2 max-w-[80%] ${message.role === "user"
+                                            ? "bg-primary text-primary-foreground"
+                                            : "bg-secondary text-secondary-foreground"
+                                        }`}>
+                                        <p className="text-sm">{message.content}</p>
+                                    </div>
+                                    {message.role === "user" && (
+                                        <Avatar>
+                                            <AvatarImage src="/smile.png" alt="You" />
+                                            <AvatarFallback>You</AvatarFallback>
+                                        </Avatar>
+                                    )}
+                                </div>
+                            ))}
+                        </>
                     )}
-                </button>
+                </ScrollArea>
+            </CardContent>
+            <form onSubmit={handleSubmit} className="p-4 border-t dark:border-gray-700">
+                <div className="flex items-center gap-2">
+                    <Input
+                        value={input}
+                        onChange={handleInputChange}
+                        placeholder="Type your message..."
+                        className="flex-grow transition-all duration-300 focus:ring-2 focus:ring-primary"
+                    />
+                    <Button
+                        type="submit"
+                        size="icon"
+                        disabled={isLoading}
+                        className="transition-all duration-300 hover:bg-primary/90"
+                    >
+                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                    </Button>
+                </div>
             </form>
-        </div>
+        </Card>
     );
 }
 

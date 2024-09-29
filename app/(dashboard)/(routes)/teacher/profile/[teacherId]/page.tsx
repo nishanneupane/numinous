@@ -47,64 +47,58 @@ const TeacherProfilePage = async ({ params }: { params: { teacherId: string } })
     const completionText = `(${completedFIelds}/${totalField})`
 
     return (
-        <>
-            {
-                !teacher.isPublished && (
-                    <Banner label='This profile is not published yet so that only you can see this ' variant={"warning"} />
-                )
-            }
-            <div className='max-w-4xl mx-auto'>
-                <div className='p-4 flex items-center justify-between'>
-                    <div>
-                        <h2 className='text-xl font-bold'>Profile Setup</h2>
-                        <span className='text-sm text-muted-foreground'>complete all fields {completionText} </span>
+        <div className="bg-gray-100 dark:bg-gray-900 min-h-screen">
+            {!teacher.isPublished && (
+                <Banner label='This profile is not published yet so that only you can see this ' variant={"warning"} />
+            )}
+            <div className='max-w-6xl mx-auto px-4 py-8'>
+                <div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8'>
+                    <div className='flex items-center justify-between mb-6'>
+                        <div>
+                            <h2 className='text-2xl font-bold text-gray-800 dark:text-white'>Profile Setup</h2>
+                            <span className='text-sm text-gray-600 dark:text-gray-400'>Complete all fields {completionText}</span>
+                        </div>
+                        <Actions totalField={totalField} completedFIelds={completedFIelds} id={teacher.id} isPublished={teacher.isPublished||false} />
                     </div>
-                    <Actions totalField={totalField} completedFIelds={completedFIelds} id={teacher.id} isPublished={teacher.isPublished||false} />
-                </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
-                    <div className='space-y-2'>
-                        <div className='flex items-center gap-2 flex-col w-full'>
-                            <div className='flex items-center space-x-2 w-full'>
-                                <LayoutDashboard className='h-10 w-10 bg-sky-200 text-sky-500 rounded-lg p-2' />
-                                <h1 className='text-lg text-muted-foreground'>Customize Your Prompt</h1>
-                            </div>
-
-                            <div className="bg-slate-50 dark:bg-slate-800 w-full p-2 flex items-center flex-col gap-2 rounded-md border border-gray-200 dark:border-gray-700 justify-start">
-                                <TitleEditForm item={teacher} />
-                            </div>
-                        </div>
-
-
-                        <div className="bg-slate-50 dark:bg-slate-800 w-full p-2 flex items-center flex-col gap-2 rounded-md border border-gray-200 dark:border-gray-700 justify-start">
-                            <PromptEditForm item={teacher} />
-                        </div>
-                    </div>
-                    <div className='space-y-2'>
-                        <div className='flex items-center gap-2 flex-col w-full'>
-                            <div className='flex items-center space-x-2 w-full'>
-                                <ListChecks className='h-10 w-10 bg-sky-200 text-sky-500 rounded-lg p-2' />
-                                <h1 className='text-lg text-muted-foreground'>Profile Body</h1>
-                            </div>
-
-                            <div className="bg-slate-50 dark:bg-slate-800 w-full p-2 flex items-center flex-col gap-2 rounded-md border border-gray-200 dark:border-gray-700 justify-start">
-                                <BodyEditForm item={teacher} />
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+                        <div className='space-y-6'>
+                            <div className='bg-gray-50 dark:bg-gray-700 rounded-lg p-6'>
+                                <div className='flex items-center mb-4'>
+                                    <LayoutDashboard className='h-8 w-8 text-blue-500 mr-3' />
+                                    <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>Customize Your Prompt</h3>
+                                </div>
+                                <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+                                    <TitleEditForm item={teacher} />
+                                </div>
+                                <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mt-4">
+                                    <PromptEditForm item={teacher} />
+                                </div>
                             </div>
                         </div>
-                        <div className='flex items-center gap-2 flex-col w-full py-3'>
-                            <div className='flex items-center space-x-2 w-full'>
-                                <DollarSign className='h-10 w-10 bg-sky-200 text-sky-500 rounded-lg p-2' />
-                                <h1 className='text-lg text-muted-foreground'>Price</h1>
+                        <div className='space-y-6'>
+                            <div className='bg-gray-50 dark:bg-gray-700 rounded-lg p-6'>
+                                <div className='flex items-center mb-4'>
+                                    <ListChecks className='h-8 w-8 text-green-500 mr-3' />
+                                    <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>Profile Body</h3>
+                                </div>
+                                <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+                                    <BodyEditForm item={teacher} />
+                                </div>
                             </div>
-
-                            <div className="bg-slate-50 dark:bg-slate-800 w-full p-2 flex items-center flex-col gap-2 rounded-md border border-gray-200 dark:border-gray-700 justify-start">
-                                <PriceEditForm id={teacher.id} oldPrice={teacher.price?.toString() || "0"} />
+                            <div className='bg-gray-50 dark:bg-gray-700 rounded-lg p-6'>
+                                <div className='flex items-center mb-4'>
+                                    <DollarSign className='h-8 w-8 text-yellow-500 mr-3' />
+                                    <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>Price</h3>
+                                </div>
+                                <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+                                    <PriceEditForm id={teacher.id} oldPrice={teacher.price?.toString() || "0"} />
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

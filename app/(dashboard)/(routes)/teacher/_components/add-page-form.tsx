@@ -16,6 +16,7 @@ const formSchema = z.object({
         message: "Title is required"
     })
 })
+
 const AddPageForm = () => {
     const router = useRouter()
     const form = useForm({
@@ -24,53 +25,53 @@ const AddPageForm = () => {
             title: ""
         }
     })
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await axios.post("/api/teacher", values).then((res) => {
-                toast.success(`Lead Created`)
-                form.reset()
-                router.push(`/teacher/profile/${res.data.id}`)
-            })
+            const response = await axios.post("/api/teacher", values)
+            toast.success(`Companion Created: ${response.data.title}`)
+            form.reset()
+            router.push(`/teacher/profile/${response.data.id}`)
         } catch (error) {
-            toast.error("Error creating")
+            toast.error("Error creating companion")
         }
     }
+
     const isLoading = form.formState.isLoading
     const isSubmitting = form.formState.isSubmitting
+
     return (
-        <div className='max-w-3xl mx-auto border border-gray-100 dark:border-slate-700 rounded-md shadow-sm p-2'>
+        <div className='max-w-3xl mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md p-6'>
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">Create New Companion</h2>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='mt-12'>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
                     <FormField
                         control={form.control}
                         name='title'
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='px-1'>
-                                    Companion Title
-                                </FormLabel>
+                                <FormLabel className='text-gray-700 dark:text-gray-300'>Companion Title</FormLabel>
                                 <FormControl>
-                                    <Input placeholder='Saas Product Create Ideas'  {...field} />
+                                    <Input placeholder='e.g. SaaS Product Idea Generator' className="bg-gray-50 dark:bg-gray-700" {...field} />
                                 </FormControl>
-                                <FormDescription className='text-xs px-2' >
-                                    Give a appropriate title to your Companion
+                                <FormDescription className='text-xs text-gray-500 dark:text-gray-400'>
+                                    Give an appropriate title to your Companion
                                 </FormDescription>
-
-                                <Button className='w-full' disabled={form.formState.isSubmitting || form.formState.isLoading}>
-                                    {
-                                        (isLoading || isSubmitting) ? (
-                                            <Loader2 className='h-4 w-4 text-secondary animate-spin' />
-                                        ) : (
-                                            <p className='text-secondary'>Create</p>
-                                        )
-                                    }
-
-                                </Button>
                                 <FormMessage />
                             </FormItem>
                         )}
-
                     />
+                    <Button 
+                        type="submit"
+                        className='w-full bg-blue-600 hover:bg-blue-700 text-white transition duration-300'
+                        disabled={isSubmitting || isLoading}
+                    >
+                        {(isLoading || isSubmitting) ? (
+                            <Loader2 className='h-5 w-5 animate-spin' />
+                        ) : (
+                            'Create Companion'
+                        )}
+                    </Button>
                 </form>
             </Form>
         </div>
